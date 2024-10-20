@@ -1,6 +1,7 @@
 using MyStockAppConfiguration.Services;
 using MyStockAppConfiguration.ServiceContracts;
 using MyStockAppConfiguration.Services;
+using MyStockAppConfiguration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,7 @@ builder.Services.Add(new ServiceDescriptor(
   ServiceLifetime.Scoped
 ));
 
-
+builder.Services.Configure<TradingOptions>(builder.Configuration.GetSection(nameof(TradingOptions))); //add IOptions<TradingOptions> as a service
 var app = builder.Build();
 
 
